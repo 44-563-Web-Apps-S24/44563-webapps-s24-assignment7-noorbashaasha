@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Eczar&family=Merriweather+Sans&family=Nunito&family=Orbitron&family=Quattrocento+Sans&family=Roboto+Mono&family=Sacramento&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    text-align: center;
+    font-family: 'Merriweather Sans', sans-serif;
+    width: 98vw;
+}
+h1{
+    margin: 20px 0;
+    color:chartreuse;
+}
+div{
+    margin: 10px 0;
+    color: burlywood;
+    box-shadow: 0dvh;
+}
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.instructions {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+}
