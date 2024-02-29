@@ -43,7 +43,7 @@
   </style>
 </head>
 <body>
-  <h2>Find the coins by Greeshma Borra</h2>
+  <h2>Find the coins by Asha Noorbasha</h2>
   <p>Click on the locations to find the coins, beware the monster</p>
   <p id="locations">Number of locations checked is zero</p>
   <p id="score">Score is zero</p>
@@ -131,7 +131,7 @@
         if (!gameOver) {
             let id = ids[position];
             if (position == monsterLocation) {
-                document.getElementById(id).src = "building.jpeg";
+                document.getElementById(id).src = "monster.jpg";
                 gameOver = true;
                 score -= 5;
             } else if (fancyCoinLocations.includes(position)) {
