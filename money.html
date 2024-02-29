@@ -20,11 +20,11 @@
         </div>
     </div>
     <div class="instructions">
-    <h1>Instructions</h1>
-    <p>Find the coins while avoiding the monster!</p>
-    <h2>Game Field</h2>
+        <h1>Instructions</h1>
+        <p>Find the coins while avoiding the monster!</p>
+        <h2>Game Field</h2>
     </div>
-    
+
     <div class="container">
         <div class="row">
             <div class="location"><img src="building.jpeg" alt="Building"></div>
@@ -76,5 +76,84 @@
             <div class="location"><img src="building.jpeg" alt="Building"></div>
         </div>
     </div>
-   
+    <button type="button" class="btn btn-primary" onclick="newGame()">New Game</button>
+    <script>
+        let ids = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22",
+            "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34"
+        ];
+        let score = 0;
+        let locations = 0;
+        let lastLocation = 0;
+        let fancyCoinLocations = [2, 5, 14, 19, 23, 33];
+        let monsterLocation = 20;
+        let gameOver = false;
+    
+        
+        function initializeLocations() {
+            monsterLocation = Math.floor(Math.random() * 35); 
+            fancyCoinLocations = [];
+            while (fancyCoinLocations.length < 6) { 
+                let location = Math.floor(Math.random() * 35);
+                if (location !== monsterLocation && !fancyCoinLocations.includes(location)) {
+                    fancyCoinLocations.push(location);
+                }
+            }
+        }
+    
+        
+    
+        function check(position) {
+            if (!gameOver) {
+                let id = ids[position];
+                if (position == monsterLocation) {
+                    document.getElementById(id).src = "monster.jpg";
+                    gameOver = true;
+                    score -= 5;
+                } else if (fancyCoinLocations.includes(position)) {
+                    document.getElementById(id).src = "fancycoin.jpg";
+                    score += 3;
+                } else {
+                    document.getElementById(id).src = "coin.jpg";
+                    score += 1;
+                }
+                locations++;
+                document.getElementById("locations").innerHTML = "Number of locations checked is " + locations;
+                document.getElementById("score").innerHTML = "Score is " + score;
+                lastLocation = position;
+            }
+        }
+    
+        function help() {
+            if (fancyCoinLocations.includes(lastLocation + 1) || fancyCoinLocations.includes(lastLocation - 1) ||
+                fancyCoinLocations.includes(lastLocation + 5) || fancyCoinLocations.includes(lastLocation - 5)) {
+                document.getElementById("help").innerHTML = "So close";
+                return "So close";
+            } else if (((Math.floor(lastLocation / 5) - Math.floor(monsterLocation / 5)) >= -1 &&
+                    (Math.floor(lastLocation / 5) - Math.floor(monsterLocation / 5)) <= 1) && ((lastLocation % 5) - (monsterLocation % 5)) >= -1 &&
+                ((lastLocation % 5) - (monsterLocation % 5)) <= 1) {
+                document.getElementById("help").innerHTML = "Grrr";
+                return "Grrr";
+            } else {
+                document.getElementById("help").innerHTML = "All clear";
+                return "All clear";
+            }
+        }
+        function newGame() {
+           
+           score = 0;
+           locations = 0;
+           lastLocation = 0;
+           gameOver = false;
+           initializeLocations(); 
+    
+         
+           document.getElementById("locations").innerHTML = "Number of locations checked is " + locations;
+           document.getElementById("score").innerHTML = "Score is " + score;
+           document.getElementById("help").innerHTML = "Help report";
+           for (let i = 0; i < ids.length; i++) {
+               document.getElementById(ids[i]).src = "building.jpg";
+           }
+       }
+      </script>
+
 </body>
